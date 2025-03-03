@@ -14,6 +14,10 @@ config/name="JamCraft"
 run/main_scene="res://Prototype/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+AudioManager="*res://Scripts/Audio/AudioManager.cs"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

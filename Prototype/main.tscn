@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/SpaceStation/SpaceStationMeshLibrary.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/CameraHandler.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/InteractiveStructure.cs" type="Script" id=4]
+[ext_resource path="res://Audio/Sfx/footstep_metal.wav" type="AudioStream" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 5
@@ -43,7 +45,7 @@ height = 0.8
 
 [sub_resource type="CubeMesh" id=7]
 
-[node name="Spatial" type="Spatial"]
+[node name="main" type="Spatial"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -52,17 +54,20 @@ environment = SubResource( 1 )
 extra_cull_margin = 16384.0
 mesh = SubResource( 3 )
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="SpaceStationGridmap" type="GridMap" parent="."]
 mesh_library = ExtResource( 1 )
 cell_size = Vector3( 8, 8, 8 )
 cell_center_y = false
 data = {
 "cells": PoolIntArray( 65533, 0, 655362, 65533, 1, 655362, 65533, 2, 2, 65533, 65529, 1, 65533, 65530, 2, 65533, 65531, 2, 65529, 65532, 1441796, 65530, 65532, 1441794, 65531, 65532, 1441794, 65532, 65532, 1441794, 65533, 65532, 3, 65529, 65533, 2, 65533, 65533, 655362, 65529, 65534, 2, 65533, 65534, 655362, 0, 65535, 1441794, 65529, 65535, 4, 65530, 65535, 1441794, 65531, 65535, 1048578, 65532, 65535, 1441794, 65533, 65535, 1441792, 65534, 65535, 1441794, 65535, 65535, 1441794 )
 }
+script = ExtResource( 4 )
 __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
+_StepAudio = ExtResource( 5 )
+_StepCooldown = 0.5
 
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.20534, 2.46893, -4.24118 )
@@ -72,6 +77,8 @@ JumpSpeed = 7.0
 Acceleration = 19.0
 Friction = 10.0
 MouseSensitivity = 0.12
+HeadBobAmplitude = 0.07
+HeadBobFrequency = 15.0
 
 [node name="MeshInstance" type="MeshInstance" parent="Player"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -90,7 +97,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667224, 0 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.69864, -3.15611 )
 far = 8192.0
 script = ExtResource( 3 )
-_PositionDampening = 55.0
+_PositionDampening = 33.0
 _RotationDampening = 33.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

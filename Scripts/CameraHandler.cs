@@ -19,7 +19,7 @@ public class CameraHandler : Camera
         _player = GetNode<Player>( "../Player" );
     }
 
-    public override void _PhysicsProcess( float delta )
+    public override void _Process( float delta )
     {
         switch( CameraState )
         {

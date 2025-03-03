@@ -27,15 +27,29 @@ public class Player : KinematicBody
     [Export]
     public float MouseSensitivity { get; set; } = .05f;
 
+    [Export]
+    public float HeadBobAmplitude { get; set; } = .2f;
+    
+    [Export]
+    public float HeadBobFrequency { get; set; } = 20f;
+
     public Spatial Head { get; private set;}
 
     public Vector3 velocity = Vector3.Zero;
 
     private Vector3 _inputDirection = Vector3.Zero;
 
+    private float _headBobPhase = 0.0f;
+
+    private Vector3 _initialHeadPosition = Vector3.Zero;
+
+    private bool _jumping = false;
+
     public override void _Ready()
     {
         Head = GetNode<Spatial>( nameof( Head ) );
+        _initialHeadPosition = Head.Translation;
+
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
@@ -62,6 +76,7 @@ public class Player : KinematicBody
     {
         HandleStepping();
         HandleStomping();
+        HandleHeadBob( delta );
     }
 
     private void HandleStepping()
@@ -75,9 +90,12 @@ public class Player : KinematicBody
             steppable.StepOn();
         }
     }
+    
     private void HandleStomping()
     {
-        if( !IsOnFloor() || velocity.y > -JumpSpeed ) return;
+        if( !IsOnFloor() || !_jumping ) return;
+
+        _jumping = false;
 
         for( int i = 0; i < GetSlideCount(); ++i )
         {
@@ -86,7 +104,7 @@ public class Player : KinematicBody
             stompable.StompOn();
         }
     }
-
+    
     private void HandleInput( float delta )
     {
         _inputDirection = Vector3.Zero;
@@ -106,6 +124,7 @@ public class Player : KinematicBody
         if( IsOnFloor() && Input.IsActionJustPressed( InputActions.JUMP ) )
         {
             velocity.y = JumpSpeed;
+            _jumping = true;
         }
 
             // Capture or free cursor
@@ -115,7 +134,7 @@ public class Player : KinematicBody
                 ? Input.MouseModeEnum.Captured : Input.MouseModeEnum.Visible;   
         }
     }
-
+    
     private void HandleMovement( float delta )
     {
         velocity.y -= delta * Gravity;
@@ -132,5 +151,20 @@ public class Player : KinematicBody
         float slope_angle = Mathf.Deg2Rad( MaxSlopeAngle );
 
         velocity = MoveAndSlide( velocity, Vector3.Up, true, floorMaxAngle: slope_angle );
+    }
+
+    private void HandleHeadBob( float delta )
+    {
+        if( _inputDirection.LengthSquared() > 0 && IsOnFloor() )
+        {
+            _headBobPhase += HeadBobFrequency * delta;
+        }
+
+        if( _headBobPhase < 0 ) _headBobPhase = 0;
+        if( _headBobPhase >= 2 * Mathf.Pi ) _headBobPhase = 0;
+
+        float offset = HeadBobAmplitude * Mathf.Sin( _headBobPhase );
+
+        Head.Translation = _initialHeadPosition + Vector3.Up * offset;
     }
 }

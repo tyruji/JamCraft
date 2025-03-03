@@ -7,3 +7,4 @@
 /home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.csproj.CoreCompileInputs.cache
 /home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.dll
 /home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.pdb
+/home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.sourcelink.json
