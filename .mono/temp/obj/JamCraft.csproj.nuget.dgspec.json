@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/anttech/disc1/Projects/Godot/JamCraft/JamCraft.csproj": {}
+  },
+  "projects": {
+    "/home/anttech/disc1/Projects/Godot/JamCraft/JamCraft.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/anttech/disc1/Projects/Godot/JamCraft/JamCraft.csproj",
+        "projectName": "JamCraft",
+        "projectPath": "/home/anttech/disc1/Projects/Godot/JamCraft/JamCraft.csproj",
+        "packagesPath": "/home/anttech/.nuget/packages/",
+        "outputPath": "/home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/anttech/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "/home/anttech/disc1/Libraries/MyLocalNugetSource/": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

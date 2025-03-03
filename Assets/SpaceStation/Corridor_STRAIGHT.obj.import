@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Corridor_STRAIGHT.obj-b12adf8de6a773b645e12a46f30c025b.mesh"
+
+[deps]
+
+files=[ "res://.import/Corridor_STRAIGHT.obj-b12adf8de6a773b645e12a46f30c025b.mesh" ]
+
+source_file="res://Assets/SpaceStation/Corridor_STRAIGHT.obj"
+dest_files=[ "res://.import/Corridor_STRAIGHT.obj-b12adf8de6a773b645e12a46f30c025b.mesh", "res://.import/Corridor_STRAIGHT.obj-b12adf8de6a773b645e12a46f30c025b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 10, 10, 10 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

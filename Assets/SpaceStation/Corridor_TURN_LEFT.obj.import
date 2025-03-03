@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Corridor_TURN_LEFT.obj-3aedb30567e959467f0582ff67e844be.mesh"
+
+[deps]
+
+files=[ "res://.import/Corridor_TURN_LEFT.obj-3aedb30567e959467f0582ff67e844be.mesh" ]
+
+source_file="res://Assets/SpaceStation/Corridor_TURN_LEFT.obj"
+dest_files=[ "res://.import/Corridor_TURN_LEFT.obj-3aedb30567e959467f0582ff67e844be.mesh", "res://.import/Corridor_TURN_LEFT.obj-3aedb30567e959467f0582ff67e844be.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 10, 10, 10 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
