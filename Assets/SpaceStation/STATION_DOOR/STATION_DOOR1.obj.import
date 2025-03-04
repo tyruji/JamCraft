@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/STATION_DOOR1.obj-4505ea29edc3c83d51b2425f53379cb6.mesh"
+
+[deps]
+
+files=[ "res://.import/STATION_DOOR1.obj-4505ea29edc3c83d51b2425f53379cb6.mesh" ]
+
+source_file="res://Assets/SpaceStation/STATION_DOOR/STATION_DOOR1.obj"
+dest_files=[ "res://.import/STATION_DOOR1.obj-4505ea29edc3c83d51b2425f53379cb6.mesh", "res://.import/STATION_DOOR1.obj-4505ea29edc3c83d51b2425f53379cb6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 5, 5, 5 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

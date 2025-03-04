@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/HugeVentilatorCage.obj-41d012c31e9a62df2f3ae4ba57747dfd.mesh"
+
+[deps]
+
+files=[ "res://.import/HugeVentilatorCage.obj-41d012c31e9a62df2f3ae4ba57747dfd.mesh" ]
+
+source_file="res://Assets/SpaceStation/HugeVentilator/HugeVentilatorCage.obj"
+dest_files=[ "res://.import/HugeVentilatorCage.obj-41d012c31e9a62df2f3ae4ba57747dfd.mesh", "res://.import/HugeVentilatorCage.obj-41d012c31e9a62df2f3ae4ba57747dfd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 10, 10, 10 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Garrage_Ship.obj-54c6aca99cafcadf649ebebb1ebe88fd.mesh"
+
+[deps]
+
+files=[ "res://.import/Garrage_Ship.obj-54c6aca99cafcadf649ebebb1ebe88fd.mesh" ]
+
+source_file="res://Assets/SpaceStation/Garrage_Ship.obj"
+dest_files=[ "res://.import/Garrage_Ship.obj-54c6aca99cafcadf649ebebb1ebe88fd.mesh", "res://.import/Garrage_Ship.obj-54c6aca99cafcadf649ebebb1ebe88fd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 10, 10, 10 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=190

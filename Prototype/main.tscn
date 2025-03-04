@@ -1,35 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/SpaceStation/SpaceStationMeshLibrary.tres" type="MeshLibrary" id=1]
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/CameraHandler.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/InteractiveStructure.cs" type="Script" id=4]
 [ext_resource path="res://Audio/Sfx/footstep_metal.wav" type="AudioStream" id=5]
-
-[sub_resource type="Environment" id=1]
-background_mode = 5
-background_color = Color( 0.698039, 0.698039, 0.698039, 1 )
-ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.7
-fog_color = Color( 0.741176, 0.741176, 0.741176, 1 )
-fog_sun_color = Color( 0.756863, 0.756863, 0.756863, 1 )
-fog_depth_enabled = false
-dof_blur_near_enabled = true
-dof_blur_near_distance = 1.0
-dof_blur_near_amount = 0.06
-glow_enabled = true
-glow_intensity = 1.14
-glow_strength = 0.97
-glow_bloom = 1.0
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0, 0, 0, 1 )
-
-[sub_resource type="SphereMesh" id=3]
-material = SubResource( 2 )
-flip_faces = true
-radius = 100.0
-height = 200.0
+[ext_resource path="res://Assets/SpaceStation/Prefabs/StationDoor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/SpaceStation/Prefabs/Garage_Ship.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Ship/SpaceShip.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleMesh" id=4]
 radius = 0.7
@@ -45,29 +23,39 @@ height = 0.8
 
 [sub_resource type="CubeMesh" id=7]
 
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=3]
+material = SubResource( 2 )
+flip_faces = true
+radius = 150.0
+height = 300.0
+
+[sub_resource type="Environment" id=1]
+background_mode = 5
+background_color = Color( 0.698039, 0.698039, 0.698039, 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.5
+fog_color = Color( 1, 1, 1, 1 )
+fog_sun_color = Color( 0, 0, 0, 1 )
+fog_depth_begin = 0.0
+fog_depth_end = 170.0
+fog_depth_curve = 7.21
+fog_transmit_enabled = true
+fog_transmit_curve = 5.65685
+dof_blur_far_enabled = true
+dof_blur_far_distance = 25.03
+dof_blur_far_transition = 20.82
+dof_blur_far_amount = 0.05
+dof_blur_far_quality = 0
+dof_blur_near_distance = 1846.9
+dof_blur_near_amount = 0.06
+glow_enabled = true
+glow_intensity = 3.19
+glow_bloom = 0.88
+
 [node name="main" type="Spatial"]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
-
-[node name="Sky" type="MeshInstance" parent="."]
-extra_cull_margin = 16384.0
-mesh = SubResource( 3 )
-
-[node name="SpaceStationGridmap" type="GridMap" parent="."]
-mesh_library = ExtResource( 1 )
-cell_size = Vector3( 8, 8, 8 )
-cell_center_y = false
-data = {
-"cells": PoolIntArray( 65533, 0, 655362, 65533, 1, 655362, 65533, 2, 2, 65533, 65529, 1, 65533, 65530, 2, 65533, 65531, 2, 65529, 65532, 1441796, 65530, 65532, 1441794, 65531, 65532, 1441794, 65532, 65532, 1441794, 65533, 65532, 3, 65529, 65533, 2, 65533, 65533, 655362, 65529, 65534, 2, 65533, 65534, 655362, 0, 65535, 1441794, 65529, 65535, 4, 65530, 65535, 1441794, 65531, 65535, 1048578, 65532, 65535, 1441794, 65533, 65535, 1441792, 65534, 65535, 1441794, 65535, 65535, 1441794 )
-}
-script = ExtResource( 4 )
-__meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 0, 0 )
-}
-_StepAudio = ExtResource( 5 )
-_StepCooldown = 0.5
 
 [node name="Player" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.20534, 2.46893, -4.24118 )
@@ -100,6 +88,56 @@ script = ExtResource( 3 )
 _PositionDampening = 33.0
 _RotationDampening = 33.0
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="Listener" type="Listener" parent="Camera"]
+current = true
+
+[node name="1x1CubeReference" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.62522 )
 mesh = SubResource( 7 )
+
+[node name="Level" type="Spatial" parent="."]
+
+[node name="Sky" type="MeshInstance" parent="Level"]
+extra_cull_margin = 16384.0
+mesh = SubResource( 3 )
+skeleton = NodePath("../..")
+
+[node name="Garage" parent="Level" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 72, 0, -4.247 )
+
+[node name="Doors" type="Spatial" parent="Level"]
+
+[node name="StationDoor" parent="Level/Doors" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.9975, 2, -3.88664 )
+
+[node name="StationDoor2" parent="Level/Doors" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9975, 2, -3.88664 )
+
+[node name="SpaceStationGridmap" type="GridMap" parent="Level"]
+mesh_library = ExtResource( 1 )
+cell_size = Vector3( 8, 8, 8 )
+cell_center_y = false
+data = {
+"cells": PoolIntArray( 65533, 0, 655362, 65533, 1, 655362, 65533, 2, 2, 65533, 65529, 1, 65533, 65530, 2, 65533, 65531, 2, 65529, 65532, 1441796, 65530, 65532, 1441794, 65531, 65532, 1441794, 65532, 65532, 1441794, 65533, 65532, 3, 65529, 65533, 2, 65533, 65533, 655362, 65529, 65534, 2, 65533, 65534, 655362, 0, 65535, 1441794, 1, 65535, 1441798, 2, 65535, 1048582, 3, 65535, 1441794, 4, 65535, 1441798, 5, 65535, 1048582, 65529, 65535, 4, 65530, 65535, 1441794, 65531, 65535, 1048578, 65532, 65535, 1441794, 65533, 65535, 1441792, 65534, 65535, 1441794, 65535, 65535, 1441794 )
+}
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+_StepAudio = ExtResource( 5 )
+_StepCooldown = 0.5
+
+[node name="Settings" type="Spatial" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Settings"]
+environment = SubResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Settings"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.50586, -2.9075 )
+light_energy = 0.266
+shadow_color = Color( 1, 0, 0, 1 )
+directional_shadow_mode = 0
+
+[node name="SpaceShip" parent="." instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 73, 0, -4 )

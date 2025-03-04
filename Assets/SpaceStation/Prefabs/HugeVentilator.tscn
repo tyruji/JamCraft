@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/MainMaterial.tres" type="Material" id=1]
+[ext_resource path="res://Assets/SpaceStation/HugeVentilator/HugeVentilatorFan.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/SpaceStation/HugeVentilator/HugeVentilatorCage.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://Scripts/SimpleRotator.cs" type="Script" id=4]
+[ext_resource path="res://Audio/Sfx/fan_noise.wav" type="AudioStream" id=5]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 3.95412, 7.51108, 7.48775 )
+
+[node name="HugeVentilator" type="StaticBody"]
+
+[node name="HugeVentilatorCage" type="MeshInstance" parent="."]
+mesh = ExtResource( 3 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 1 )
+
+[node name="FanPivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.751455, 0.659783, 0, -0.659783, 0.751455, 0, 7.5, -0.5 )
+script = ExtResource( 4 )
+_RotationSpeed = 300.0
+
+[node name="HugeVentilatorFan" type="MeshInstance" parent="FanPivot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0.5 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("../../..")
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.52671, -0.554965 )
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+unit_size = 10.7
+autoplay = true
+max_distance = 60.0

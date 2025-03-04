@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Corridor_DOOR.obj-65f87e440bcf8ab9dd8921c1a675392f.mesh"
+
+[deps]
+
+files=[ "res://.import/Corridor_DOOR.obj-65f87e440bcf8ab9dd8921c1a675392f.mesh" ]
+
+source_file="res://Assets/SpaceStation/Corridor_DOOR.obj"
+dest_files=[ "res://.import/Corridor_DOOR.obj-65f87e440bcf8ab9dd8921c1a675392f.mesh", "res://.import/Corridor_DOOR.obj-65f87e440bcf8ab9dd8921c1a675392f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 10, 10, 10 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

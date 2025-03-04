@@ -30,6 +30,14 @@ public struct RandomizedSoundSettings : ISoundSettings
     [Export]
     public float pitch_min, pitch_max;
 
+    public RandomizedSoundSettings( Vector2 volume_range, Vector2 pitch_range )
+    {
+        this.volume_min = volume_range.x;
+        this.volume_max = volume_range.y;
+        this.pitch_min = pitch_range.x;
+        this.pitch_max = pitch_range.y;
+    }
+
     public RandomizedSoundSettings( float volume_min, float volume_max,
                                     float pitch_min, float pitch_max )
     {

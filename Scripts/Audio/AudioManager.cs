@@ -61,7 +61,7 @@ public class AudioManager : Spatial
         }
     }
 
-    public void Play3D( AudioStream stream, Vector3 position )
+    public void Play3D( AudioStream stream, Vector3 position, float unitSize = 1 )
     {
         foreach( var stream_info in _audio3DStreams )
         {
@@ -75,7 +75,8 @@ public class AudioManager : Spatial
         }
     }
 
-    public void Play3D( AudioStream stream, Vector3 position, ISoundSettings soundSettings )
+    public void Play3D( AudioStream stream, Vector3 position,
+        ISoundSettings soundSettings, float unitSize = 1 )
     {
         foreach( var stream_info in _audio3DStreams )
         {
@@ -86,6 +87,7 @@ public class AudioManager : Spatial
             plyr.Translation = position;
             plyr.PitchScale = soundSettings.GetPitch();
             plyr.UnitDb = soundSettings.GetVolume();
+            plyr.UnitSize = unitSize;
             plyr.Play();
             break;
         }

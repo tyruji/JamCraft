@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Ship/ship.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/MainMaterial.tres" type="Material" id=2]
+
+[node name="SpaceShip" type="Spatial"]
+
+[node name="ship" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
