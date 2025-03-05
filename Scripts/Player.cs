@@ -25,7 +25,7 @@ public class Player : KinematicBody
     public float HeadRotationAngleClamp { get; set; } = 70;
 
     [Export]
-    public float MouseSensitivity { get; set; } = .05f;
+    public float MouseSensitivity { get; set; } = .12f;
 
     [Export]
     public float HeadBobAmplitude { get; set; } = .2f;
@@ -33,9 +33,17 @@ public class Player : KinematicBody
     [Export]
     public float HeadBobFrequency { get; set; } = 20f;
 
-    public Spatial Head { get; private set;}
+    public bool EnableControl { get; set; } = true;
+
+    public Spatial Head { get; private set; } = null;
+
+    public RayCast RayCast { get; private set; } = null;
 
     public Vector3 velocity = Vector3.Zero;
+    
+    public IHighlightable selectedHighlightable = null;
+
+    public IInteractable selectedInteractable = null;
 
     private Vector3 _inputDirection = Vector3.Zero;
 
@@ -48,6 +56,8 @@ public class Player : KinematicBody
     public override void _Ready()
     {
         Head = GetNode<Spatial>( nameof( Head ) );
+        RayCast = Head.GetNode<RayCast>( nameof( RayCast ) );
+        RayCast.AddException( this );
         _initialHeadPosition = Head.Translation;
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -55,11 +65,13 @@ public class Player : KinematicBody
 
     public override void _Input( InputEvent @event )
     {
+        if( !EnableControl ) return;
+
         if( !( @event is InputEventMouseMotion motion_event ) ) return;
         if( Input.MouseMode != Input.MouseModeEnum.Captured ) return;
 
         Head.RotateX( Mathf.Deg2Rad( -motion_event.Relative.y * MouseSensitivity ) );
-        RotateY( Mathf.Deg2Rad( - motion_event.Relative.x * MouseSensitivity ) );
+        RotateY( Mathf.Deg2Rad( -motion_event.Relative.x * MouseSensitivity ) );
 
         var head_rot = Head.RotationDegrees;
         head_rot.x = Mathf.Clamp( head_rot.x, -HeadRotationAngleClamp, HeadRotationAngleClamp );
@@ -68,15 +80,20 @@ public class Player : KinematicBody
 
     public override void _PhysicsProcess( float delta )
     {
+        if( !EnableControl ) return;
+        
         HandleInput( delta );
         HandleMovement( delta );
     }
 
     public override void _Process( float delta )
     {
+        if( !EnableControl ) return;
+        
         HandleStepping();
         HandleStomping();
         HandleHeadBob( delta );
+        HandleRayInteraction();
     }
 
     private void HandleStepping()
@@ -133,6 +150,12 @@ public class Player : KinematicBody
             Input.MouseMode = Input.MouseMode == Input.MouseModeEnum.Visible
                 ? Input.MouseModeEnum.Captured : Input.MouseModeEnum.Visible;   
         }
+
+            // Interaction
+        if( Input.IsActionJustPressed( InputActions.INTERACT ) )
+        {
+             selectedInteractable?.Interact( this );
+        }
     }
     
     private void HandleMovement( float delta )
@@ -166,5 +189,30 @@ public class Player : KinematicBody
         float offset = HeadBobAmplitude * Mathf.Sin( _headBobPhase );
 
         Head.Translation = _initialHeadPosition + Vector3.Up * offset;
+    }
+
+    private void HandleRayInteraction()
+    {
+        var col = RayCast.GetCollider();
+
+        if( col is IInteractable interactable )
+        {
+            selectedInteractable = interactable;
+        }
+
+        if( !( col is IHighlightable highlightable ) )
+        {
+            selectedHighlightable?.Unhighlight();
+            selectedHighlightable = null;
+            return;
+        }
+
+        if( selectedHighlightable != highlightable )
+        {
+            selectedHighlightable?.Unhighlight();
+            highlightable.Highlight();
+            selectedHighlightable = highlightable;
+        }
+
     }
 }

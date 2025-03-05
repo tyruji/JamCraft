@@ -23,11 +23,8 @@ public struct SoundSettings : ISoundSettings
 
 public struct RandomizedSoundSettings : ISoundSettings
 {
-    [Export]
     public float volume_min;
-    [Export]
     public float volume_max;
-    [Export]
     public float pitch_min, pitch_max;
 
     public RandomizedSoundSettings( Vector2 volume_range, Vector2 pitch_range )

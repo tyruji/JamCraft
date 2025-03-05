@@ -1,10 +1,164 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Ship/ship.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://Assets/MainMaterial.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/Ship/ShipInteractHandler.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Ship/SpaceShip.cs" type="Script" id=4]
 
-[node name="SpaceShip" type="Spatial"]
+[sub_resource type="SphereShape" id=19]
 
-[node name="ship" type="MeshInstance" parent="."]
+[sub_resource type="Shader" id=17]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled, depth_draw_never;
+
+uniform vec4 color : hint_color = vec4( .5, .5, 1, 1 );
+uniform float fade_speed = 5.0;
+uniform float min_alpha = .2;
+uniform float max_alpha = .9;
+
+void fragment()
+{
+	ALBEDO = color.rgb;
+	ALPHA = .5 * ( max_alpha - min_alpha ) * ( 1.0 - cos( fade_speed * TIME ) ) + min_alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id=18]
+shader = SubResource( 17 )
+shader_param/color = Color( 1, 0.913725, 0.00784314, 0.34902 )
+shader_param/fade_speed = 7.0
+shader_param/min_alpha = 0.1
+shader_param/max_alpha = 0.3
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 8.3356, 6.67485, 16.0325 )
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 5.91576, 4.92043, 12.5757 )
+
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 3.55752, 3.01735, 10.1314 )
+
+[sub_resource type="CylinderShape" id=6]
+height = 1.57711
+radius = 4.00628
+
+[sub_resource type="CylinderShape" id=9]
+height = 2.28424
+radius = 2.64217
+
+[sub_resource type="CylinderShape" id=10]
+height = 20.0
+radius = 3.65031
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.5, 0.5, 2.52381 )
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.961822, 0.783059, 3.45857 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 1.00706, 0.998035, 0.509525 )
+
+[node name="SpaceShip" type="KinematicBody"]
+script = ExtResource( 4 )
+MouseSensitivity = 0.05
+
+[node name="ShortGroundRayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9912, -2.11789 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+debug_shape_custom_color = Color( 1, 0.423529, 0.909804, 1 )
+debug_shape_thickness = 5
+
+[node name="PlayerLeaveShipPoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.58252, 8.08228, -12.8763 )
+
+[node name="CameraPivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0 )
+
+[node name="SpringArm" type="SpringArm" parent="CameraPivot"]
+shape = SubResource( 19 )
+spring_length = 40.0
+
+[node name="CameraFollow" type="Spatial" parent="CameraPivot/SpringArm"]
+
+[node name="InteractHandler" type="Area" parent="."]
+monitoring = false
+script = ExtResource( 3 )
+
+[node name="HighlightModel" type="MeshInstance" parent="InteractHandler"]
+visible = false
+mesh = ExtResource( 1 )
+material/0 = SubResource( 18 )
+
+[node name="CollisionShape" type="CollisionShape" parent="InteractHandler"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4788, 0 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="InteractHandler"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4788, 0 )
+shape = SubResource( 15 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="InteractHandler"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.83067, 0 )
+shape = SubResource( 16 )
+
+[node name="ShipModel" type="MeshInstance" parent="."]
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 2 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.56278, 11.0889 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape11" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.56278, 9.15636 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 6.94944, -1.91113 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50027, 1.50227, 4.49937 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape12" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.991088, 0.133208, 0, -0.133208, 0.991088, 0, 11.0569, 0.49082 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape13" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, -0.991088, -0.133208, 1, -4.33218e-08, -5.8227e-09, 0, -0.133208, 0.991088, -5, 6.05687, 0.49082 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape14" type="CollisionShape" parent="."]
+transform = Transform( -4.2222e-08, -0.991794, 0.127844, 1, -4.33218e-08, -5.8227e-09, 1.13133e-08, 0.127844, 0.991794, 5, 6.05687, 0.49082 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99409, 3.002, 3.49937 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00591, 3.002, 3.49937 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00591, 3.002, -6.50063 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape10" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99409, 3.002, -6.50063 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49973, 1.50227, 4.49937 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50027, 1.50227, -7.50063 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49973, 1.50227, -7.50063 )
+shape = SubResource( 1 )

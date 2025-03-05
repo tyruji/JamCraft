@@ -10,4 +10,5 @@ public static class InputActions
     public const string FORWARD = "ui_up";
     public const string BACK = "ui_down";
     public const string JUMP = "ui_select";
+    public const string INTERACT = "interact";
 }

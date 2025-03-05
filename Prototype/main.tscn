@@ -1,25 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/SpaceStation/SpaceStationMeshLibrary.tres" type="MeshLibrary" id=1]
-[ext_resource path="res://Scripts/Player.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/CameraHandler.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/InteractiveStructure.cs" type="Script" id=4]
 [ext_resource path="res://Audio/Sfx/footstep_metal.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/SpaceStation/Prefabs/StationDoor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/SpaceStation/Prefabs/Garage_Ship.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Ship/SpaceShip.tscn" type="PackedScene" id=8]
-
-[sub_resource type="CapsuleMesh" id=4]
-radius = 0.7
-mid_height = 0.8
-
-[sub_resource type="SpatialMaterial" id=6]
-flags_transparent = true
-albedo_color = Color( 0.341176, 0.941176, 0.490196, 0.686275 )
-
-[sub_resource type="CapsuleShape" id=5]
-radius = 0.7
-height = 0.8
 
 [sub_resource type="CubeMesh" id=7]
 
@@ -57,36 +45,14 @@ glow_bloom = 0.88
 
 [node name="main" type="Spatial"]
 
-[node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.20534, 2.46893, -4.24118 )
-script = ExtResource( 2 )
-MaxSpeed = 15.0
-JumpSpeed = 7.0
-Acceleration = 19.0
-Friction = 10.0
-MouseSensitivity = 0.12
-HeadBobAmplitude = 0.07
-HeadBobFrequency = 15.0
-
-[node name="MeshInstance" type="MeshInstance" parent="Player"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-visible = false
-mesh = SubResource( 4 )
-material/0 = SubResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Player"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -2.98023e-08, 0 )
-shape = SubResource( 5 )
-
-[node name="Head" type="Spatial" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667224, 0 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.65132, -4.10099 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.69864, -3.15611 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69864, -3.15611 )
 far = 8192.0
 script = ExtResource( 3 )
-_PositionDampening = 33.0
-_RotationDampening = 33.0
+_PlayerFollowPositionDampening = 20.0
 
 [node name="Listener" type="Listener" parent="Camera"]
 current = true
