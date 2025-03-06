@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/anttech/disc1/Projects/Godot/JamCraft/JamCraft.csproj": {}
+    "/home/anttech/Projects/Godot/JamCraft/JamCraft.csproj": {}
   },
   "projects": {
-    "/home/anttech/disc1/Projects/Godot/JamCraft/JamCraft.csproj": {
+    "/home/anttech/Projects/Godot/JamCraft/JamCraft.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/anttech/disc1/Projects/Godot/JamCraft/JamCraft.csproj",
+        "projectUniqueName": "/home/anttech/Projects/Godot/JamCraft/JamCraft.csproj",
         "projectName": "JamCraft",
-        "projectPath": "/home/anttech/disc1/Projects/Godot/JamCraft/JamCraft.csproj",
+        "projectPath": "/home/anttech/Projects/Godot/JamCraft/JamCraft.csproj",
         "packagesPath": "/home/anttech/.nuget/packages/",
-        "outputPath": "/home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/",
+        "outputPath": "/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/anttech/.nuget/NuGet/NuGet.Config"
@@ -20,7 +20,6 @@
           "net472"
         ],
         "sources": {
-          "/home/anttech/disc1/Libraries/MyLocalNugetSource/": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

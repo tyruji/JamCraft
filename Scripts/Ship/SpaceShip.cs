@@ -82,7 +82,7 @@ public class SpaceShip : KinematicBody
 
     public void HandleMovement( float delta )
     {
-            //
+            // Hover up and down periodically
         var hover_vel = GetHoverSwayElevationVelocity();
         velocity.y = Mathf.Lerp( velocity.y, hover_vel, HoverSwayDampening * delta );
 

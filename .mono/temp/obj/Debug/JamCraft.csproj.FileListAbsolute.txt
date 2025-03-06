@@ -8,3 +8,13 @@
 /home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.dll
 /home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.pdb
 /home/anttech/disc1/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.sourcelink.json
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/bin/Debug/JamCraft.dll
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/bin/Debug/JamCraft.pdb
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.csproj.AssemblyReference.cache
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.GeneratedMSBuildEditorConfig.editorconfig
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.AssemblyInfoInputs.cache
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.AssemblyInfo.cs
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.csproj.CoreCompileInputs.cache
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.sourcelink.json
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.dll
+/home/anttech/Projects/Godot/JamCraft/.mono/temp/obj/Debug/JamCraft.pdb
