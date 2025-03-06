@@ -44,8 +44,7 @@ public class ShipInteractHandler : Area, IInteractable, IHighlightable
 
     public void HandleLeavingShip()
     {
-            // ESC
-        if( !Input.IsActionJustPressed( InputActions.CANCEL ) ) return;
+        if( !Input.IsActionJustPressed( InputActions.LEAVE_SHIP ) ) return;
         
         CameraHandler cam_handle = GetViewport().GetCamera() as CameraHandler;
 

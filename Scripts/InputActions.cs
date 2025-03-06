@@ -11,4 +11,5 @@ public static class InputActions
     public const string BACK = "ui_down";
     public const string JUMP = "ui_select";
     public const string INTERACT = "interact";
+    public const string LEAVE_SHIP = "leave_ship";
 }

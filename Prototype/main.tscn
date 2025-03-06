@@ -106,4 +106,4 @@ shadow_color = Color( 1, 0, 0, 1 )
 directional_shadow_mode = 0
 
 [node name="SpaceShip" parent="." instance=ExtResource( 8 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 73, 0, -4 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 61, 0, -4 )

@@ -62,10 +62,10 @@ skeleton = NodePath("")
 material/0 = ExtResource( 2 )
 
 [node name="HugeVentilator" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8425, 7, 5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1721, 7, 5 )
 
 [node name="HugeVentilator2" parent="." instance=ExtResource( 3 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.2547, 7, 5 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.5019, 7, 5 )
 
 [node name="Floor" type="StaticBody" parent="."]
 script = ExtResource( 4 )

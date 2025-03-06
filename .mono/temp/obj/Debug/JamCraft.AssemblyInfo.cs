@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JamCraft")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3774e2810a2c4045e8a4144a4457bd51d2bf031")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92e7414323002ffdec2480eb1759229e479966b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("JamCraft")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JamCraft")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

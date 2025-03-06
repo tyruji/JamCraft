@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = JamCraft
-build_property.ProjectDir = /home/anttech/Projects/Godot/JamCraft/
+build_property.ProjectDir = /home/anttech/disc1/Projects/Godot/JamCraft/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false
